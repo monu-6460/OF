@@ -1,0 +1,155 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    inlet1
+    {    
+        type            codedMixed;
+        
+        refValue        uniform (0 0 0);
+        refGradient     uniform (0 0 0);
+        valueFraction   uniform 0;
+        value           uniform (0 0 0);
+
+        name            velocityInlet1;
+
+        code 
+        #{
+            const scalar t = this->db().time().value();
+
+            vector Uf = vector(0,0,0);
+            scalar PI = Foam::constant::mathematical::pi;
+            
+            scalar w = 1;
+
+            if (sin(t*2*10*PI) > 0 && sin(t*2*10*PI) < 0.2)
+            {
+                w = 0;
+            }
+
+            this->refValue() = Uf;
+            this->refGrad() = vector(0,0,0);
+            this->valueFraction() = w;
+         #};
+    }
+
+    inlet2
+    {    
+        type            codedMixed;
+        
+        refValue        uniform (0 0 0);
+        refGradient     uniform (0 0 0);
+        valueFraction   uniform 0;
+        value           uniform (0 0 0);
+
+        name            velocityInlet2;
+
+        code 
+        #{
+            const scalar t = this->db().time().value();
+
+            vector Uf = vector(0,0,0);
+            scalar PI = Foam::constant::mathematical::pi;
+            
+            scalar w = 1;
+
+            if (sin((t-0.05)*2*10*PI) > 0 && sin((t-0.05)*2*10*PI) < 0.2)
+            {
+                w = 0;
+            }
+
+            this->refValue() = Uf;
+            this->refGrad() = vector(0,0,0);
+            this->valueFraction() = w;
+         #};
+    }
+
+    inlet3
+    {    
+        type            codedMixed;
+        
+        refValue        uniform (0 0 0);
+        refGradient     uniform (0 0 0);
+        valueFraction   uniform 0;
+        value           uniform (0 0 0);
+
+        name            velocityInlet3;
+
+        code 
+        #{
+            const scalar t = this->db().time().value();
+
+            vector Uf = vector(0,0,0);
+            scalar PI = Foam::constant::mathematical::pi;
+            
+            scalar w = 1;
+
+            if (sin((t-0.025)*2*10*PI) > 0 && sin((t-0.025)*2*10*PI) < 0.2)
+            {
+                w = 0;
+            }
+
+            this->refValue() = Uf;
+            this->refGrad() = vector(0,0,0);
+            this->valueFraction() = w;
+         #};
+    }
+
+    inlet4
+    {    
+        type            codedMixed;
+        
+        refValue        uniform (0 0 0);
+        refGradient     uniform (0 0 0);
+        valueFraction   uniform 0;
+        value           uniform (0 0 0);
+
+        name            velocityInlet4;
+
+        code 
+        #{
+            const scalar t = this->db().time().value();
+
+            vector Uf = vector(0,0,0);
+            scalar PI = Foam::constant::mathematical::pi;
+            
+            scalar w = 1;
+
+            if (sin((t-0.075)*2*10*PI) > 0 && sin((t-0.075)*2*10*PI) < 0.2)
+            {
+                w = 0;
+            }
+
+            this->refValue() = Uf;
+            this->refGrad() = vector(0,0,0);
+            this->valueFraction() = w;
+         #};
+    }
+    outlet
+    {
+        type            zeroGradient;
+    }
+
+    staticwall
+    {
+        type            noSlip;
+    }
+}
+// ************************************************************************* //

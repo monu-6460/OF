@@ -1,0 +1,6 @@
+# dynamicCode:
+# SHA1 = 14cb0283d53c2cee5d740b643472768b764942bb
+
+codedMixedFvPatchFieldTemplate.C
+
+LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/libpressureInlet4_14cb0283d53c2cee5d740b643472768b764942bb

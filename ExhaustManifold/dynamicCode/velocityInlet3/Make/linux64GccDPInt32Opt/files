@@ -1,0 +1,6 @@
+# dynamicCode:
+# SHA1 = 37ad219d6cc9e3f995e2a8dfe379acd4c2bfd494
+
+SOURCE += codedMixedFvPatchFieldTemplate.C
+
+LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/libvelocityInlet3_37ad219d6cc9e3f995e2a8dfe379acd4c2bfd494
